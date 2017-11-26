@@ -1,28 +1,25 @@
 
 package sample;
 
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-
 import java.io.*;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Observable;
 
 /**
  * Created by R2D2 on 15.10.2017.
  */
-public class GenerateData {
+public class Data {
+
+    public Data() {
+    }
 
     public static ArrayList <File> loadedFilesList = new ArrayList<File>(); //Tutaj zapisuej wczytane pliki
     public static ArrayList <ArrayList <String>> generatedDiscountPack = new ArrayList<ArrayList <String>>(); //Tutaj przechowuje wczytane dane z plików. Każdy plik w osobnej liście.
     public static ArrayList <ArrayList <ArrayList <String>>> generatedFinalPack = new ArrayList<ArrayList<ArrayList<String>>>(); //Tutaj przechowuje zestawienia kwoty abonamentu po rabatach i rabaty jakie ją tworzą.
     public static ArrayList <String> observableList = new ArrayList <String>(); //Lisat taryf na urzytek Comboboxa
-
+    public static Integer position = 0; // Pozycja comboboxa
+    public static ArrayList<Integer> filtredPosition = new ArrayList<Integer>(); // Pozycje list (abo + rabaty), które mieszczą się w widełkach filtra
 
     public static void generateData(ArrayList<File> loadedFilesList,ArrayList<ArrayList<String>> generatedDiscountPack ) throws IOException {
 
@@ -152,26 +149,15 @@ public class GenerateData {
         return;
     }
 
-    public static void k (){
-
-        int licznik = 0;
-        for (ArrayList<ArrayList<String>> lvl1: GenerateData.generatedFinalPack) {
-            System.out.println("PLIK " + (licznik+1) +  " ---------------------------------------");
-            for (ArrayList<String> lvl2: lvl1) {
-                System.out.println(lvl2);
-            }
-            licznik++;
-        }
-    }
 
 
-    public static Integer choicePosition(Object choiceValue) throws Exception{
+    public static void getPosition (Object choiceValue) throws Exception{
 
         Integer summary = 0;
 
         try {
 
-            for (Object id: GenerateData.observableList) {
+            for (Object id: Data.observableList) {
                 if (choiceValue.equals(id)){
                     break;
                 }
@@ -180,13 +166,7 @@ public class GenerateData {
 
         } catch (Exception error){}
 
-        return summary;
+        position = summary;
     }
 
-    public static Integer arraySize (Object choiceValue) throws Exception {
-
-        Integer summary = generatedDiscountPack.get(choicePosition(choiceValue)).size();
-
-        return summary;
-    }
 }

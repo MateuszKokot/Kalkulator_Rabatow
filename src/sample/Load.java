@@ -11,20 +11,20 @@ public class Load {
 
     public static List load (){
 
-        while(!GenerateData.loadedFilesList.isEmpty()){
-            GenerateData.loadedFilesList.remove(0);
+        while(!Data.loadedFilesList.isEmpty()){
+            Data.loadedFilesList.remove(0);
         }
 
-        while(!GenerateData.generatedDiscountPack.isEmpty()){
-            GenerateData.generatedDiscountPack.remove(0);
+        while(!Data.generatedDiscountPack.isEmpty()){
+            Data.generatedDiscountPack.remove(0);
         }
 
-        while(!GenerateData.generatedFinalPack.isEmpty()){
-            GenerateData.generatedFinalPack.remove(0);
+        while(!Data.generatedFinalPack.isEmpty()){
+            Data.generatedFinalPack.remove(0);
         }
 
-        while(!GenerateData.observableList.isEmpty()){
-            GenerateData.observableList.remove(0);
+        while(!Data.observableList.isEmpty()){
+            Data.observableList.remove(0);
         }
 
         FileChooser fileChooser = new FileChooser();

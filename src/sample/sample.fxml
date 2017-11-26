@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="globalPane" onMouseMoved="#init" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane fx:id="globalPane" onMouseMoved="#init" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <top>
         <VBox fx:id="topPane" style="-fx-background-color: GREY;" BorderPane.alignment="CENTER">
             <children>
@@ -69,7 +69,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0">
                             <children>
-                                <Slider fx:id="slider" onMouseClicked="#finalSummary" onMouseDragged="#finalSummary" prefHeight="14.0" prefWidth="520.0" />
+                                <Slider fx:id="slider" onMouseClicked="#choice" prefHeight="14.0" prefWidth="520.0" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0">

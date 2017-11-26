@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -100,16 +101,17 @@ public class Controller {
     void wczytaj () throws Exception {
 
         try {
-            GenerateData.loadedFilesList.addAll(Load.load()); // Wczytywanie pliku
-            GenerateData.generateData(GenerateData.loadedFilesList,GenerateData.generatedDiscountPack); // Wczytywanie Arraylist z ID, stawką bazową i możliwymi rabatami
-            System.out.println(GenerateData.generatedDiscountPack);
-            GenerateData.generateVariantsDiscounts(GenerateData.generatedDiscountPack, GenerateData.generatedFinalPack); // Wyliczanie Abo finalnego na podstawie mozłiwych rabatów
-            GenerateData.sort(GenerateData.generatedFinalPack);  //Sortowanie wyliczonych rabatów od najniższego do najwyższego
-            GenerateData.generateObservableList(GenerateData.generatedDiscountPack, GenerateData.observableList);  // Tworzy liste mozłiwych taryf
-            choiceTariff.setItems(FXCollections.observableArrayList(GenerateData.observableList));
-            choiceTariff.setValue(GenerateData.observableList.get(0));
-            setSlider(slider);
-            finalSummary();
+            Data.loadedFilesList.addAll(Load.load()); // Wczytywanie pliku
+            Data.generateData(Data.loadedFilesList, Data.generatedDiscountPack); // Wczytywanie Arraylist z ID, stawką bazową i możliwymi rabatami
+            System.out.println(Data.generatedDiscountPack);
+            Data.generateVariantsDiscounts(Data.generatedDiscountPack, Data.generatedFinalPack); // Wyliczanie Abo finalnego na podstawie mozłiwych rabatów
+            Data.sort(Data.generatedFinalPack);  //Sortowanie wyliczonych rabatów od najniższego do najwyższego
+            Data.generateObservableList(Data.generatedDiscountPack, Data.observableList);  // Tworzy liste mozłiwych taryf
+            choiceTariff.setItems(FXCollections.observableArrayList(Data.observableList)); // Dodaje itemy do comboobx
+            choiceTariff.setValue(Data.observableList.get(0)); // ustawia value combobox jako item 0
+            Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
+            setSlider(slider); // ustawia itemy slidera
+
 
 
         }catch (Exception error){}
@@ -121,37 +123,11 @@ public class Controller {
 
         try {
 
-            setSlider(slider);
+            Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
+            setSlider(slider); // ustawia itemy slidera
             finalSummary();
 
         }catch (Exception error){}
-    }
-
-    @FXML
-    void finalSummary () throws Exception {
-
-        ArrayList<Integer> position = new ArrayList<Integer>();
-        Integer i = 0;
-
-        for (ArrayList<String> list: GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue()))) {
-
-            if (Double.parseDouble(list.get(0)) < slider.getMin() ){
-
-            }else if(Double.parseDouble(list.get(0)) > slider.getMax()){
-
-            }else{
-                position.add(i);
-            }
-            i++;
-        }
-        System.out.println(slider.getMin());
-        System.out.println(slider.getMax());
-        System.out.println(position);
-
-        //TODO Mam pozycje w arraju które abo mieszczą sie  w ramach min max. na podstawie tego zmapować to z sliderem
-        //TODO MAm błąd jeśli wartość max jest mniejsza od wartości min to nie podstawia nic a powinno podstawic przynajmniej poprawną wartośc min.
-
-
     }
 
 
@@ -159,40 +135,40 @@ public class Controller {
 
         try {
 
-            //Podstawianie Min pod slider z zabezpieczenieami
-            if (textMin.getText().equals("")
-                    || Double.parseDouble(textMin.getText()) > Double.parseDouble(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue()))
-                    .get(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue())).size() - 1).get(0))
-                    || Double.parseDouble(textMin.getText()) < Double.parseDouble(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue()))
-                    .get(0).get(0))
-                    || (!textMax.getText().equals("") && !textMin.getText().equals("") && Double.parseDouble(textMax.getText()) <= Double.parseDouble(textMin.getText()))
-                    ) {
+            Double Aw; // Minimalna wartość wpiana przez usera
+            Double Zw; // Maksymalna wartość wpisana przez usera
+            Double a; // Minimalna wartość z wczytanych abonentu
+            Double z; // Maksymalna wartość z wczytanych abonamnetów
 
-                slider.setMin(Double.parseDouble(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue())).get(0).get(0)));
+            a = Double.parseDouble(Data.generatedFinalPack.get(Data.position).get(0).get(0));
+            z = Double.parseDouble(Data.generatedFinalPack.get(Data.position).get(Data.generatedFinalPack.get(Data.position).size() - 1).get(0));
 
-            } else {
+            //***
+            if (textMin.getText().equals("")){
+                Aw = 0.0;
+            }else { Aw = Double.parseDouble(textMin.getText()); }
 
-                slider.setMin(Double.parseDouble(textMin.getText()));
-            }
+            //***
+            if (textMax.getText().equals("") || Double.parseDouble(textMax.getText()) > 99999.0){
+                Zw = 99999.0;
+            }else {
+                Zw = Double.parseDouble(textMax.getText());}
 
-            //Podstawianie Max pod slider z zabezpieczenieami
-            if (
-                    textMax.getText().equals("")
-                            || Double.parseDouble(textMax.getText()) > Double.parseDouble(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue()))
-                            .get(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue())).size() - 1).get(0))
 
-                            || Double.parseDouble(textMax.getText()) < Double.parseDouble(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue()))
-                            .get(0).get(0))
-                            || (!textMax.getText().equals("") && !textMin.getText().equals("") && Double.parseDouble(textMax.getText()) <= Double.parseDouble(textMin.getText()))
-                    ) {
+                //***
+                if (Aw <= a ||  Aw >= z || Aw > Zw) {
 
-                slider.setMax(Double.parseDouble(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue()))
-                        .get(GenerateData.generatedFinalPack.get(GenerateData.choicePosition(choiceTariff.getValue())).size() - 1).get(0)));
+                    slider.setMin(a);
+                }else {
+                    slider.setMin(Aw);}
 
-            } else {
+                //***
+                if (Zw <= a ||  Zw >= z || Zw < Aw) {
 
-                slider.setMax(Double.parseDouble(textMax.getText()));
-            }
+                    slider.setMax(z);
+                }else {
+                    slider.setMax(Zw);}
+
 
             //Reszta ustawień slidera
             slider.setValue((slider.getMax()-slider.getMin())/2+slider.getMin());
@@ -205,6 +181,31 @@ public class Controller {
         }catch (Exception error){}
 
     }
+
+
+    @FXML
+    void finalSummary () throws Exception {
+
+        //TODO PRzerobić to bo słabe to jesty
+        Integer i = 0;
+
+        for (ArrayList<String> list: Data.generatedFinalPack.get(Data.position)) {
+
+            if (Double.parseDouble(list.get(0)) < slider.getMin() ){
+
+            }else if(Double.parseDouble(list.get(0)) > slider.getMax()){
+
+            }else{
+                Data.filtredPosition.add(i);
+            }
+            i++;
+        }
+        System.out.println(Data.filtredPosition);
+
+        //TODO Mam pozycje w arraju które abo mieszczą sie  w ramach min max. na podstawie tego zmapować to z sliderem
+
+    }
+
 }
 
 
