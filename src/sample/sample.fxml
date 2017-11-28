@@ -69,7 +69,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0">
                             <children>
-                                <Slider fx:id="slider" onMouseClicked="#choice" prefHeight="14.0" prefWidth="520.0" />
+                                <Slider fx:id="slider" onMouseClicked="#sliderMove" onMouseDragged="#sliderMove" prefHeight="14.0" prefWidth="520.0" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0">

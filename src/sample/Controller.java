@@ -111,7 +111,7 @@ public class Controller {
             choiceTariff.setValue(Data.observableList.get(0)); // ustawia value combobox jako item 0
             Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
             setSlider(slider); // ustawia itemy slidera
-            Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
+            //Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
 
 
 
@@ -129,6 +129,49 @@ public class Controller {
             Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
 
         }catch (Exception error){}
+    }
+
+    @FXML
+    void sliderMove () {
+
+        discountOne.setText("");
+        discountTwo.setText("");
+        discountThree.setText("");
+        discountFour.setText("");
+
+        Double interval = (slider.getMax() - slider.getMin()) / Data.filtredPosition.size();
+
+        for (Integer i = 0; i < Data.filtredPosition.size(); i++){
+
+            if (slider.getValue() > slider.getMin() + (interval*i) && slider.getValue() <= slider.getMin() + (interval*(i+1))){
+
+                discountedAmount.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(0));
+
+                for (Integer j = 1; j < Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).size(); j++ ){
+                    
+                    switch(j){
+                        case 1:
+                            discountOne.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(j));
+                            break;
+                        case 2:
+                            discountTwo.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(j));
+                            break;
+                        case 3:
+                            discountThree.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(j));
+                            break;
+                        case 4:
+                            discountFour.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(j));
+                            break;
+                    }
+
+                }
+            }
+        }
+
+
+
+
+
     }
 
 
