@@ -1,6 +1,8 @@
 
 package sample;
 
+import javafx.scene.control.Slider;
+
 import java.io.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -167,6 +169,27 @@ public class Data {
         } catch (Exception error){}
 
         position = summary;
+    }
+
+    public static void finalSummary (Slider slider) throws Exception {
+
+        //TODO PRzerobić to bo słabe to jesty
+        Integer i = 0;
+
+        for (ArrayList<String> list: Data.generatedFinalPack.get(Data.position)) {
+
+            if (    Double.parseDouble(list.get(0)) < slider.getMin()
+                    || Double.parseDouble(list.get(0)) > slider.getMax()){
+                
+            }else{
+                Data.filtredPosition.add(i);
+            }
+            i++;
+        }
+        System.out.println(Data.filtredPosition);
+
+        //TODO Mam pozycje w arraju które abo mieszczą sie  w ramach min max. na podstawie tego zmapować to z sliderem
+
     }
 
 }

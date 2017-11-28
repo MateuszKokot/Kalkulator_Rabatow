@@ -111,6 +111,7 @@ public class Controller {
             choiceTariff.setValue(Data.observableList.get(0)); // ustawia value combobox jako item 0
             Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
             setSlider(slider); // ustawia itemy slidera
+            Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
 
 
 
@@ -125,7 +126,7 @@ public class Controller {
 
             Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
             setSlider(slider); // ustawia itemy slidera
-            finalSummary();
+            Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
 
         }catch (Exception error){}
     }
@@ -156,14 +157,14 @@ public class Controller {
 
 
                 //***
-                if (Aw <= a ||  Aw >= z || Aw > Zw) {
+                if (Aw <= a ||  Aw >= z || Aw >= Zw) {
 
                     slider.setMin(a);
                 }else {
                     slider.setMin(Aw);}
 
                 //***
-                if (Zw <= a ||  Zw >= z || Zw < Aw) {
+                if (Zw <= a ||  Zw >= z || Zw <= Aw) {
 
                     slider.setMax(z);
                 }else {
@@ -179,30 +180,6 @@ public class Controller {
             slider.setBlockIncrement(1);
 
         }catch (Exception error){}
-
-    }
-
-
-    @FXML
-    void finalSummary () throws Exception {
-
-        //TODO PRzerobić to bo słabe to jesty
-        Integer i = 0;
-
-        for (ArrayList<String> list: Data.generatedFinalPack.get(Data.position)) {
-
-            if (Double.parseDouble(list.get(0)) < slider.getMin() ){
-
-            }else if(Double.parseDouble(list.get(0)) > slider.getMax()){
-
-            }else{
-                Data.filtredPosition.add(i);
-            }
-            i++;
-        }
-        System.out.println(Data.filtredPosition);
-
-        //TODO Mam pozycje w arraju które abo mieszczą sie  w ramach min max. na podstawie tego zmapować to z sliderem
 
     }
 
