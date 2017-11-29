@@ -50,8 +50,6 @@ public class Data {
 
     public static void engine (ArrayList <String> listString, ArrayList<ArrayList<String>> listOut) {
 
-        //TODO Przerobić sposób liczenia bo zamiast odajmować rabat mnoży razy rabat i daje to za małe wartości.
-
         Double baseRate = Double.parseDouble(listString.get(1));
         int iterator = 0;
 

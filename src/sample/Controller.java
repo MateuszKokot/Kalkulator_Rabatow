@@ -143,7 +143,7 @@ public class Controller {
 
         for (Integer i = 0; i < Data.filtredPosition.size(); i++){
 
-            if (slider.getValue() > slider.getMin() + (interval*i) && slider.getValue() <= slider.getMin() + (interval*(i+1))){
+            if (slider.getValue() >= slider.getMin() + (interval*i) && slider.getValue() <= slider.getMin() + (interval*(i+1))){
 
                 discountedAmount.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(0));
 
