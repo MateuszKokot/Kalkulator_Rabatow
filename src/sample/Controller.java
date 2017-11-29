@@ -95,6 +95,18 @@ public class Controller {
                 }
             }
         });
+
+        globalPane.getStylesheets().add(Skin.skin); //Podpina pod program wybrany arkusz stylu - link do niego jest w zmiennym stringu
+        textMin.getStyleClass().add("textField");
+        textMax.getStyleClass().add("textField");
+        discountOne.getStyleClass().add("textField");
+        discountTwo.getStyleClass().add("textField");
+        discountThree.getStyleClass().add("textField");
+        discountFour.getStyleClass().add("textField");
+        discountedAmount.getStyleClass().add("textField");
+        slider.getStyleClass().add("slider");
+        choiceTariff.getStyleClass().add("comboBox");
+
     }
 
     @FXML
