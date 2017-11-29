@@ -111,12 +111,12 @@ public class Controller {
             choiceTariff.setValue(Data.observableList.get(0)); // ustawia value combobox jako item 0
             Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
             setSlider(slider); // ustawia itemy slidera
-            //Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
+            Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
+            sliderMove(); // Wyświetla rabaty i wartość abo dla danej pozycji/wartości slidera
 
 
 
         }catch (Exception error){}
-
     }
 
     @FXML
@@ -127,6 +127,7 @@ public class Controller {
             Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
             setSlider(slider); // ustawia itemy slidera
             Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
+            sliderMove(); // Wyświetla rabaty i wartość abo dla danej pozycji/wartości slidera
 
         }catch (Exception error){}
     }
@@ -163,15 +164,9 @@ public class Controller {
                             discountFour.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(j));
                             break;
                     }
-
                 }
             }
         }
-
-
-
-
-
     }
 
 
@@ -223,9 +218,7 @@ public class Controller {
             slider.setBlockIncrement(1);
 
         }catch (Exception error){}
-
     }
-
 }
 
 
