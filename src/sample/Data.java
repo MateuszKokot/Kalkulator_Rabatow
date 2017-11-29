@@ -58,7 +58,7 @@ public class Data {
         for (int i = 2 ; i < listString.size() ; i++ ){
 
             Double firstDiscount = Double.parseDouble(listString.get(i));
-            Double firstSummary = baseRate * (firstDiscount/100);
+            Double firstSummary = baseRate * ((100- firstDiscount)/100);
             listOut.add(new ArrayList<String>());
             listOut.get(iterator).add(firstSummary.toString());
             listOut.get(iterator).add(listString.get(i));
@@ -67,7 +67,7 @@ public class Data {
             for (int j = i+1 ; j < listString.size() ; j++ ){
 
                 Double secondDiscount = Double.parseDouble(listString.get(j));
-                Double secondSummary = (baseRate * (firstDiscount/100))*(secondDiscount/100);
+                Double secondSummary = (baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100);
                 listOut.add(new ArrayList<String>());
                 listOut.get(iterator).add(secondSummary.toString());
                 listOut.get(iterator).add(listString.get(i));
@@ -77,7 +77,7 @@ public class Data {
                 for (int k = j+1 ; k < listString.size() ; k++ ){
 
                     Double thirdDiscount = Double.parseDouble(listString.get(k));
-                    Double thirdSummary = ((baseRate * (firstDiscount/100))*(secondDiscount/100))*(thirdDiscount/100);
+                    Double thirdSummary = ((baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100))*((100 - thirdDiscount)/100);
                     listOut.add(new ArrayList<String>());
                     listOut.get(iterator).add(thirdSummary.toString());
                     listOut.get(iterator).add(listString.get(i));
@@ -88,7 +88,7 @@ public class Data {
                     for (int l = k+1 ; l < listString.size() ; l++ ){
 
                         Double fourthDiscount = Double.parseDouble(listString.get(l));
-                        Double fourthSummary = (((baseRate * (firstDiscount/100))*(secondDiscount/100))*(thirdDiscount/100))*(fourthDiscount/100);
+                        Double fourthSummary = (((baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100))*((100 - thirdDiscount)/100))*((100 - fourthDiscount)/100);
                         listOut.add(new ArrayList<String>());
                         listOut.get(iterator).add(fourthSummary.toString());
                         listOut.get(iterator).add(listString.get(i));

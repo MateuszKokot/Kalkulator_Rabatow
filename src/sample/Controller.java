@@ -148,7 +148,7 @@ public class Controller {
                 discountedAmount.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(0));
 
                 for (Integer j = 1; j < Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).size(); j++ ){
-                    
+
                     switch(j){
                         case 1:
                             discountOne.setText(Data.generatedFinalPack.get(Data.position).get(Data.filtredPosition.get(i)).get(j));
