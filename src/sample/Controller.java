@@ -70,6 +70,12 @@ public class Controller {
     @FXML
     Label infoLabel;
 
+    @FXML
+    Label sliderMin;
+
+    @FXML
+    Label sliderMax;
+
 
 
 
@@ -146,7 +152,21 @@ public class Controller {
     void choice() throws Exception {
 
         try {
+            textMin.setText("");
+            textMax.setText("");
 
+            Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
+            setSlider(slider); // ustawia itemy slidera
+            Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
+            sliderMove(); // Wyświetla rabaty i wartość abo dla danej pozycji/wartości slidera
+
+        }catch (Exception error){}
+    }
+
+    @FXML
+    void write() throws Exception {
+
+        try {
             Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
             setSlider(slider); // ustawia itemy slidera
             Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
@@ -221,24 +241,24 @@ public class Controller {
                 if (Aw <= a ||  Aw >= z || Aw >= Zw) {
 
                     slider.setMin(a);
+                    sliderMin.setText(Double.toString(a));
                 }else {
-                    slider.setMin(Aw);}
+                    slider.setMin(Aw);
+                    sliderMin.setText(Double.toString(Aw)); }
 
                 //***
                 if (Zw <= a ||  Zw >= z || Zw <= Aw) {
 
                     slider.setMax(z);
+                    sliderMax.setText(Double.toString(z));
                 }else {
-                    slider.setMax(Zw);}
+                    slider.setMax(Zw);
+                    sliderMax.setText(Double.toString(Zw)); }
 
 
             //Reszta ustawień slidera
             slider.setValue((slider.getMax()-slider.getMin())/2+slider.getMin());
-            slider.setShowTickLabels(true);
-            slider.setShowTickMarks(true);
-            slider.setMajorTickUnit(10);
-            slider.setMinorTickCount(5);
-            slider.setBlockIncrement(1);
+
 
         }catch (Exception error){}
     }
