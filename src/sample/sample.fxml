@@ -15,7 +15,7 @@
 
 <BorderPane fx:id="globalPane" onMouseMoved="#init" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <top>
-        <VBox fx:id="topPane" style="-fx-background-color: GREY;" BorderPane.alignment="CENTER">
+        <VBox fx:id="topPane" BorderPane.alignment="CENTER">
             <children>
                 <MenuBar>
                     <menus>
@@ -39,10 +39,10 @@
                         </Menu>
                     </menus>
                 </MenuBar>
-                <VBox fx:id="topInsideFrame" alignment="TOP_CENTER" prefHeight="100.0" spacing="10.0" style="-fx-background-color: BLACK;">
+                <VBox fx:id="topInsideFrame" alignment="TOP_CENTER" prefHeight="100.0" spacing="10.0">
                     <children>
                         <ComboBox fx:id="choiceTariff" onAction="#choice" prefWidth="150.0" promptText="Wczytaj rabaty" />
-                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: red;">
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                             <children>
                                 <TextField fx:id="textMin" onKeyReleased="#choice" promptText="Minimalny abonamnet" />
                                 <TextField fx:id="textMax" onKeyReleased="#choice" promptText="Maksymalny abonamnet" />
@@ -63,9 +63,9 @@
         </VBox>
     </top>
     <center>
-        <VBox fx:id="centerPane" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
+        <VBox fx:id="centerPane" BorderPane.alignment="CENTER">
             <children>
-                <HBox fx:id="centerInsideFrameOne" alignment="TOP_CENTER" minHeight="100.0" style="-fx-background-color: green;">
+                <HBox fx:id="centerInsideFrameOne" alignment="TOP_CENTER" minHeight="100.0">
                     <VBox.margin>
                         <Insets left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
@@ -87,7 +87,7 @@
                         </HBox>
                     </children>
                 </HBox>
-                <HBox fx:id="centerInsideFrameTwo" alignment="TOP_CENTER" spacing="10.0" style="-fx-background-color: white;">
+                <HBox fx:id="centerInsideFrameTwo" alignment="TOP_CENTER" spacing="10.0">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
@@ -154,9 +154,9 @@
         </VBox>
     </center>
     <bottom>
-        <VBox fx:id="bottomPane" style="-fx-background-color: orange;" BorderPane.alignment="CENTER">
+        <VBox fx:id="bottomPane" BorderPane.alignment="CENTER">
             <children>
-                <HBox fx:id="bottomInsideFrame" alignment="BOTTOM_LEFT" prefHeight="100.0" style="-fx-background-color: violet;">
+                <HBox fx:id="bottomInsideFrame" alignment="BOTTOM_LEFT" prefHeight="100.0">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>

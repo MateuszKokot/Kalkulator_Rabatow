@@ -97,15 +97,26 @@ public class Controller {
         });
 
         globalPane.getStylesheets().add(Skin.skin); //Podpina pod program wybrany arkusz stylu - link do niego jest w zmiennym stringu
-        textMin.getStyleClass().add("textField");
-        textMax.getStyleClass().add("textField");
-        discountOne.getStyleClass().add("textField");
-        discountTwo.getStyleClass().add("textField");
-        discountThree.getStyleClass().add("textField");
-        discountFour.getStyleClass().add("textField");
-        discountedAmount.getStyleClass().add("textField");
+        globalPane.getStyleClass().add("globalPane");
+
+        topPane.getStyleClass().add("topPane");
+        topInsideFrame.getStyleClass().add("topInsideFrame");
+        choiceTariff.getStyleClass().add("choiceTariff");
+        textMin.getStyleClass().add("textMin");
+        textMax.getStyleClass().add("textMax");
+
+        centerPane.getStyleClass().add("centerPane");
+        centerInsideFrameOne.getStyleClass().add("centerInsideFrameOne");
+        centerInsideFrameTwo.getStyleClass().add("centerInsideFrameTwo");
         slider.getStyleClass().add("slider");
-        choiceTariff.getStyleClass().add("comboBox");
+        discountedAmount.getStyleClass().add("discountedAmount");
+        discountOne.getStyleClass().add("discountOne");
+        discountTwo.getStyleClass().add("discountTwo");
+        discountThree.getStyleClass().add("discountThree");
+        discountFour.getStyleClass().add("discountFour");
+
+        bottomPane.getStyleClass().add("bottomPane");
+        bottomInsideFrame.getStyleClass().add("bottomInsideFrame");
 
     }
 

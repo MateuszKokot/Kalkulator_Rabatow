@@ -1,11 +1,68 @@
-.textField{
+.globalPane{
+-fx-background-color: #FDD111
+}
+
+.topPane{
+-fx-background-color: #FDD111
+}
+
+.topInsideFrame{
+-fx-background-color: #FDD111
+}
+
+.choiceTariff{
+-fx-background-color: #FDD111
+}
+
+.textMin{
+-fx-background-color: #FDD111
+}
+
+.textMax{
+-fx-background-color: #FDD111
+}
+
+.centerPane{
+-fx-background-color: #FDD111
+}
+
+.centerInsideFrameOne{
+-fx-background-color: #FDD111
+}
+
+.centerInsideFrameTwo{
 -fx-background-color: #FDD111
 }
 
 .slider{
--fx-background-color: #ADF999
-}
-
-.comboBox{
 -fx-background-color: #FDD111
 }
+
+.discountedAmount{
+-fx-background-color: #FDD111
+}
+
+.discountOne{
+-fx-background-color: #FDD111
+}
+
+.discountTwo{
+-fx-background-color: #FDD111
+}
+
+.discountThree{
+-fx-background-color: #FDD111
+}
+
+.discountFour{
+-fx-background-color: #FDD111
+}
+
+.bottomPane{
+-fx-background-color: #FDD111
+}
+
+.bottomInsideFrame{
+-fx-background-color: #FDD111
+}
+
