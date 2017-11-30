@@ -11,7 +11,7 @@
 
 .topInsideFrame{
 -fx-border-style: solid;
--fx-border-width: 5px;
+-fx-border-width: 4px;
 -fx-border-color: WHITE;
 }
 
@@ -42,13 +42,13 @@
 
 .centerInsideFrameOne{
 -fx-border-style: solid;
--fx-border-width: 5px;
+-fx-border-width: 4px;
 -fx-border-color: WHITE;
 }
 
 .centerInsideFrameTwo{
 -fx-border-style: solid;
--fx-border-width: 5px;
+-fx-border-width: 4px;
 -fx-border-color: WHITE;
 }
 
@@ -97,7 +97,7 @@
 
 .bottomInsideFrame{
 -fx-border-style: solid;
--fx-border-width: 5px;
+-fx-border-width: 4px;
 -fx-border-color: WHITE;
 }
 

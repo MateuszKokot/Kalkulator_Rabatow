@@ -76,6 +76,9 @@ public class Controller {
     @FXML
     Label sliderMax;
 
+    @FXML
+    Label baseInfo;
+
 
 
 
@@ -154,11 +157,13 @@ public class Controller {
         try {
             textMin.setText("");
             textMax.setText("");
+            baseInfo.setText("Stawka bazowa to: " + Data.generatedDiscountPack.get(Data.position).get(1)); // wyświetla w lapelce kwotę bazową
 
             Data.getPosition(choiceTariff.getValue()); // wczytuje do zmiennej position i zapisuej jako integer kt ory parametr jest wybrany
             setSlider(slider); // ustawia itemy slidera
             Data.finalSummary(slider); // sprawdza które konfiguracje rabatów mieszczą się w ramach widełek slidera
             sliderMove(); // Wyświetla rabaty i wartość abo dla danej pozycji/wartości slidera
+            printDiscount(); // wyświetla w dolnej labelce wczytane rabaty
 
         }catch (Exception error){}
     }
@@ -261,6 +266,18 @@ public class Controller {
 
 
         }catch (Exception error){}
+    }
+
+    void printDiscount () {
+
+        String string = "Wczytane rabaty to: ";
+
+        for (Integer i = 2; i < Data.generatedDiscountPack.get(Data.position).size(); i++) {
+
+            string = string + Data.generatedDiscountPack.get(Data.position).get(i) + "%  ";
+        }
+
+        infoLabel.setText(string);
     }
 }
 
