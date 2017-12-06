@@ -50,13 +50,17 @@ public class Data {
 
     public static void engine (ArrayList <String> listString, ArrayList<ArrayList<String>> listOut) {
 
+        java.text.DecimalFormat df = new java.text.DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        df.setMinimumFractionDigits(2);
+
         Double baseRate = Double.parseDouble(listString.get(1));
         int iterator = 0;
 
         for (int i = 2 ; i < listString.size() ; i++ ){
 
             Double firstDiscount = Double.parseDouble(listString.get(i));
-            Double firstSummary = baseRate * ((100- firstDiscount)/100);
+            Double firstSummary = rounding(baseRate * ((100- firstDiscount)/100));
             listOut.add(new ArrayList<String>());
             listOut.get(iterator).add(firstSummary.toString());
             listOut.get(iterator).add(listString.get(i));
@@ -65,7 +69,7 @@ public class Data {
             for (int j = i+1 ; j < listString.size() ; j++ ){
 
                 Double secondDiscount = Double.parseDouble(listString.get(j));
-                Double secondSummary = (baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100);
+                Double secondSummary = rounding((baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100));
                 listOut.add(new ArrayList<String>());
                 listOut.get(iterator).add(secondSummary.toString());
                 listOut.get(iterator).add(listString.get(i));
@@ -75,7 +79,7 @@ public class Data {
                 for (int k = j+1 ; k < listString.size() ; k++ ){
 
                     Double thirdDiscount = Double.parseDouble(listString.get(k));
-                    Double thirdSummary = ((baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100))*((100 - thirdDiscount)/100);
+                    Double thirdSummary = rounding(((baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100))*((100 - thirdDiscount)/100));
                     listOut.add(new ArrayList<String>());
                     listOut.get(iterator).add(thirdSummary.toString());
                     listOut.get(iterator).add(listString.get(i));
@@ -86,7 +90,7 @@ public class Data {
                     for (int l = k+1 ; l < listString.size() ; l++ ){
 
                         Double fourthDiscount = Double.parseDouble(listString.get(l));
-                        Double fourthSummary = (((baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100))*((100 - thirdDiscount)/100))*((100 - fourthDiscount)/100);
+                        Double fourthSummary = rounding((((baseRate * ((100 - firstDiscount)/100))*((100 - secondDiscount)/100))*((100 - thirdDiscount)/100))*((100 - fourthDiscount)/100));
                         listOut.add(new ArrayList<String>());
                         listOut.get(iterator).add(fourthSummary.toString());
                         listOut.get(iterator).add(listString.get(i));
@@ -190,5 +194,14 @@ public class Data {
 
     }
 
+    public static Double rounding (Double d) {
 
+        double aDouble = d;
+        aDouble *= 100;
+        aDouble = Math.round(aDouble);
+        aDouble /= 100;
+        Double summary = aDouble;
+
+        return summary;
+    }
 }
