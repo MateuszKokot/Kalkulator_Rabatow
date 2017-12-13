@@ -281,7 +281,7 @@ public class Controller {
 
         String string = "Wczytane rabaty to: ";
 
-        for (Integer i = 2; i < Data.generatedDiscountPack.get(Data.position).size(); i++) {
+        for (Integer i = 4; i < Data.generatedDiscountPack.get(Data.position).size(); i++) {
 
             string = string + Data.generatedDiscountPack.get(Data.position).get(i) + "%  ";
         }
