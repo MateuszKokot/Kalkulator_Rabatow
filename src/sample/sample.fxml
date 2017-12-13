@@ -24,9 +24,9 @@
                                 <MenuItem mnemonicParsing="false" onAction="#wczytaj" text="Wczytaj rabaty" />
                         <Menu mnemonicParsing="false" text="Skórki">
                            <items>
-                              <RadioMenuItem mnemonicParsing="false" text="Unspecified Action" />
-                              <RadioMenuItem mnemonicParsing="false" text="Unspecified Action" />
-                              <RadioMenuItem mnemonicParsing="false" text="Unspecified Action" />
+                              <RadioMenuItem fx:id="firstSkinn" mnemonicParsing="false" text="Blue" />
+                              <RadioMenuItem fx:id="secondSkin" mnemonicParsing="false" text="Dark" />
+                              <RadioMenuItem fx:id="thirdSkin" mnemonicParsing="false" text="Abstract" />
                            </items>
                         </Menu>
                                 <MenuItem mnemonicParsing="false" text="Zamknij" />
