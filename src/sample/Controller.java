@@ -6,15 +6,66 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        textMin.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    textMin.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        textMax.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    textMax.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        Skin.skinInit(); // Inicjalizuje skiny
+        globalPane.getStylesheets().add(Skin.stringList.get(0)); //Podpina pod program wybrany arkusz stylu - link do niego jest w zmiennym stringu
+        globalPane.getStyleClass().add("globalPane");
+
+        topPane.getStyleClass().add("topPane");
+        topInsideFrame.getStyleClass().add("topInsideFrame");
+        choiceTariff.getStyleClass().add("choiceTariff");
+        textMin.getStyleClass().add("textMin");
+        textMax.getStyleClass().add("textMax");
+
+        centerPane.getStyleClass().add("centerPane");
+        centerInsideFrameOne.getStyleClass().add("centerInsideFrameOne");
+        centerInsideFrameTwo.getStyleClass().add("centerInsideFrameTwo");
+        slider.getStyleClass().add("slider");
+        discountedAmount.getStyleClass().add("discountedAmount");
+        discountOne.getStyleClass().add("discountOne");
+        discountTwo.getStyleClass().add("discountTwo");
+        discountThree.getStyleClass().add("discountThree");
+        discountFour.getStyleClass().add("discountFour");
+
+        bottomPane.getStyleClass().add("bottomPane");
+        bottomInsideFrame.getStyleClass().add("bottomInsideFrame");
+    }
 
     @FXML
     BorderPane globalPane;
@@ -90,54 +141,6 @@ public class Controller {
 
 
 
-
-    @FXML
-    void init (){
-
-        textMin.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    textMin.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-
-        textMax.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    textMax.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-
-        Skin.skinInit(); // Inicjalizuje skiny
-        globalPane.getStylesheets().add(Skin.stringList.get(0)); //Podpina pod program wybrany arkusz stylu - link do niego jest w zmiennym stringu
-        globalPane.getStyleClass().add("globalPane");
-
-        topPane.getStyleClass().add("topPane");
-        topInsideFrame.getStyleClass().add("topInsideFrame");
-        choiceTariff.getStyleClass().add("choiceTariff");
-        textMin.getStyleClass().add("textMin");
-        textMax.getStyleClass().add("textMax");
-
-        centerPane.getStyleClass().add("centerPane");
-        centerInsideFrameOne.getStyleClass().add("centerInsideFrameOne");
-        centerInsideFrameTwo.getStyleClass().add("centerInsideFrameTwo");
-        slider.getStyleClass().add("slider");
-        discountedAmount.getStyleClass().add("discountedAmount");
-        discountOne.getStyleClass().add("discountOne");
-        discountTwo.getStyleClass().add("discountTwo");
-        discountThree.getStyleClass().add("discountThree");
-        discountFour.getStyleClass().add("discountFour");
-
-        bottomPane.getStyleClass().add("bottomPane");
-        bottomInsideFrame.getStyleClass().add("bottomInsideFrame");
-
-    }
 
     @FXML
     void wczytaj () throws Exception {
@@ -288,6 +291,7 @@ public class Controller {
 
         infoLabel.setText(string);
     }
+
 
 }
 

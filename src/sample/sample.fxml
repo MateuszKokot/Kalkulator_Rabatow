@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="globalPane" onMouseMoved="#init" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane fx:id="globalPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <top>
         <VBox fx:id="topPane" BorderPane.alignment="CENTER">
             <children>
@@ -41,7 +41,7 @@
                 </MenuBar>
                 <VBox fx:id="topInsideFrame" alignment="TOP_CENTER" prefHeight="100.0" spacing="10.0">
                     <children>
-                        <ComboBox fx:id="choiceTariff" onAction="#choice" prefWidth="150.0" promptText="Wczytaj rabaty" />
+                        <ComboBox fx:id="choiceTariff" minWidth="-Infinity" onAction="#choice" prefHeight="25.0" prefWidth="318.0" promptText="Wczytaj rabaty" />
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                             <children>
                                 <TextField fx:id="textMin" onKeyReleased="#write" promptText="Minimalny abonamnet" />

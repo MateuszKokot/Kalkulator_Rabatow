@@ -126,19 +126,14 @@ public class Data {
 
         for (ArrayList <ArrayList <String>> unsorted : unsortedGlobal) {
 
-            boolean condition = true;
-            while (condition) {
+            int n = unsorted.size();
 
-                condition = false;
-                for (int i = 0; i < unsorted.size() - 1; i++) {
-
+            for (int k = 0; k < n - 1; k++) {
+                for (int i = 0; i < n - k - 1; i++) {
                     if (Double.parseDouble(unsorted.get(i).get(0)) > Double.parseDouble(unsorted.get(i + 1).get(0))) {
-
-                        ArrayList<String> a = unsorted.get(i);
-                        ArrayList<String> b = unsorted.get(i + 1);
-                        unsorted.set(i, b);
-                        unsorted.set(i + 1, a);
-                        condition = true;
+                        ArrayList<String> temp = unsorted.get(i);
+                        unsorted.set(i, unsorted.get(i + 1));
+                        unsorted.set(i + 1, temp);
                     }
                 }
             }
