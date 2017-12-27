@@ -43,6 +43,8 @@ public class Controller implements Initializable {
             }
         });
 
+        progressBar.setVisible(false);
+
         Skin.skinInit(); // Inicjalizuje skiny
         globalPane.getStylesheets().add(Skin.stringList.get(0)); //Podpina pod program wybrany arkusz stylu - link do niego jest w zmiennym stringu
         globalPane.getStyleClass().add("globalPane");
@@ -139,6 +141,9 @@ public class Controller implements Initializable {
     @FXML
     RadioMenuItem thirdSkin;
 
+    @FXML
+    ProgressBar progressBar;
+
 
 
 
@@ -146,6 +151,7 @@ public class Controller implements Initializable {
     void wczytaj () throws Exception {
 
         try {
+            
             Data.loadedFilesList.addAll(Load.load()); // Wczytywanie pliku
             Data.generateData(Data.loadedFilesList, Data.generatedDiscountPack); // Wczytywanie Arraylist z ID, stawką bazową i możliwymi rabatami
             Data.generateVariantsDiscounts(Data.generatedDiscountPack, Data.generatedFinalPack); // Wyliczanie Abo finalnego na podstawie mozłiwych rabatów

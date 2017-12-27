@@ -1,6 +1,7 @@
 
 package sample;
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 
 import java.io.*;
@@ -121,16 +122,29 @@ public class Data {
     }
 
 
-    public static void sort (ArrayList<ArrayList <ArrayList <String>>> unsortedGlobal) {
+        public static void sort (ArrayList<ArrayList <ArrayList <String>>> unsortedGlobal) {
 
+            int progress = 1;
 
         for (ArrayList <ArrayList <String>> unsorted : unsortedGlobal) {
 
+            ArrayList<Double> dList= new ArrayList<>();
             int n = unsorted.size();
+
+            for(int a = 0; a < n ; a++ ){
+                dList.add(Double.parseDouble(unsorted.get(a).get(0)));
+            }
+
+            progress++;
 
             for (int k = 0; k < n - 1; k++) {
                 for (int i = 0; i < n - k - 1; i++) {
-                    if (Double.parseDouble(unsorted.get(i).get(0)) > Double.parseDouble(unsorted.get(i + 1).get(0))) {
+                    if (dList.get(i) > dList.get(i + 1)) {
+
+                        Double tempD = dList.get(i);
+                        dList.set(i, dList.get(i + 1));
+                        dList.set(i + 1, tempD);
+
                         ArrayList<String> temp = unsorted.get(i);
                         unsorted.set(i, unsorted.get(i + 1));
                         unsorted.set(i + 1, temp);
